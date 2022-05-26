@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>Form_Tappa_Ins</title>
+    <link href="Forms.css" rel=stylesheet type="text/css">
+</head>
+<body>
+<h1>Inserire posizione in classifica</h1>
+<form name="posizione_in_tappa" action="pos_in_t_ins" method="get">
+    <table class="form_table">
+        <tr>
+            <td>
+                <label for="codC">Codice Ciclista:</label> <br/>
+                <select class="form_row" name="cod_ciclista" id="codC">
+                    <option value="prova"> prova</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="cTappa">Codice Tappa:</label> <br/>
+                <select class="form_row" name="cod_tappa" id="cTappa">
+                    <option value="prova"> prova</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="ed">Edizione:</label> <br/>
+                <select class="form_row" name="edizione" id="ed">
+                    <option value="prova"> prova</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="posC">Posizione Ciclista:</label> <br/>
+                <input class="form_row" type="text" name="pos_ciclista" id="posC">
+            </td>
+        </tr>
+    </table>
+    <br/>
+    <div style="text-align:center">
+        <input class="form_submit_button" type="submit" value="Inserisci">
+    </div>
+</form>
+</body>
+</html>
