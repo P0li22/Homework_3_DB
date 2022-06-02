@@ -2,29 +2,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Form_Query</title>
-    <link href="Forms.css" rel=stylesheet type="text/css">
+    <link href="../static/Forms.css" rel=stylesheet type="text/css">
 </head>
 <body>
-<h1>Posizione ciclista in tappa</h1>
-<table class="form_table">
-    <tr>
-        <td>
-            <label for="codC">Codice Ciclista:</label> <br/>
-            <select class="form_row" name="cod_ciclista" id="codC">
-                <option value="prova"> prova</option>
-            </select>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label for="cTappa">Codice Tappa:</label> <br/>
-            <input class="form_row" type="text" name="cod_tappa" id="cTappa">
-        </td>
-    </tr>
-</table>
-<br/>
-<div style="text-align:center">
-    <input class="form_submit_button" type="submit" value="Invia">
-</div>
+<form name="dati_query" action="result" method="GET">
+    <h1>Posizione ciclista in tappa</h1>
+    <table class="form_table">
+        <tr>
+            <td>
+                <label for="codC">Codice Ciclista:</label> <br/>
+                <select class="form_row" name="cod_ciclista" id="codC">
+                    {% for ciclista in ciclisti %}
+                    <option value="{{ ciclista['CodC'] }}">{{ ciclista['CodC'] }} - {{ ciclista['Nome'] }} {{
+                        ciclista['Cognome'] }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="cTappa">Codice Tappa:</label> <br/>
+                <input class="form_row" type="text" name="cod_tappa" id="cTappa">
+            </td>
+        </tr>
+    </table>
+    <br/>
+    <div style="text-align:center">
+        <input class="form_submit_button" type="submit" value="Invia">
+    </div>
+</form>
 </body>
 </html>

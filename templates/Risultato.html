@@ -1,0 +1,36 @@
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Risultato</title>
+    <link href="../static/Forms.css" rel=stylesheet type="text/css">
+</head>
+<body>
+{% if error_message %}
+<div style="color: red">
+    <h1 style="color: white">{{error_message}}</h1>
+</div>
+{% else %}
+<h1>Risultato:</h1>
+<table class="form_table" border="1">
+    <tr>
+        <td>Nome</td>
+        <td>Cognome</td>
+        <td>Nome Squadra</td>
+        <td>Codice Tappa</td>
+        <td>Edizione</td>
+        <td>Posizione</td>
+    </tr>
+    {% for val in res %}
+    <tr>
+        <td>{{ val['Nome'] }}</td>
+        <td>{{ val['Cognome'] }}</td>
+        <td>{{ val['NomeS'] }}</td>
+        <td>{{ val['CodT'] }}</td>
+        <td>{{ val['Edizione'] }}</td>
+        <td>{{ val['Posizione'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+</body>
+</html>

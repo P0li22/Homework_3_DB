@@ -2,33 +2,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Form_Tappa_Ins</title>
-    <link href="Forms.css" rel=stylesheet type="text/css">
+    <link href="../static/Forms.css" rel=stylesheet type="text/css">
 </head>
 <body>
 <h1>Inserire posizione in classifica</h1>
-<form name="posizione_in_tappa" action="pos_in_t_ins" method="get">
+<form name="posizione_in_tappa" action="aggiornamento_classifica" method="get">
     <table class="form_table">
         <tr>
             <td>
                 <label for="codC">Codice Ciclista:</label> <br/>
                 <select class="form_row" name="cod_ciclista" id="codC">
-                    <option value="prova"> prova</option>
+                    {% for ciclista in ciclisti %}
+                    <option value="{{ ciclista['CodC'] }}">{{ ciclista['CodC'] }} - {{ ciclista['Nome'] }} {{
+                        ciclista['Cognome'] }}</option>
+                    {% endfor %}
                 </select>
             </td>
         </tr>
         <tr>
             <td>
-                <label for="cTappa">Codice Tappa:</label> <br/>
-                <select class="form_row" name="cod_tappa" id="cTappa">
-                    <option value="prova"> prova</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="ed">Edizione:</label> <br/>
-                <select class="form_row" name="edizione" id="ed">
-                    <option value="prova"> prova</option>
+                <label for="c_ed_Tappa">Codice Tappa:</label> <br/>
+                <select class="form_row" name="cod_ed_tappa" id="c_ed_Tappa">
+                    {% for tappa in tappe %}
+                    <option value="{{ (tappa['CodT'], tappa['Edizione']) }}"> tappa {{ tappa['CodT'] }} - {{ tappa['CodT'] }}^ edizione</option>
+                    {% endfor %}
                 </select>
             </td>
         </tr>
