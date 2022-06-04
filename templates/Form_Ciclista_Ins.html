@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Inserire ciclista</h1>
-<form name="nuovo_ciclista" method="get">
+<form name="nuovo_ciclista" action="inserimento_ciclista" method="get">
     <table class="form_table">
         <tr>
             <td>
@@ -38,7 +38,9 @@
             <td>
                 <label for="squadraC">Squadra:</label> <br/>
                 <select class="form_row" name="squadra_ciclista" id="squadraC">
-                    <option value="prova"> prova</option>
+                    {% for squadra in squadre %}
+                    <option value="{{ squadra['CodS'] }}">{{ squadra['CodS'] }}</option>
+                    {% endfor %}
                 </select>
             </td>
         </tr>

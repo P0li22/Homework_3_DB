@@ -54,7 +54,7 @@ def ind():
 
             query = "SELECT CodT, Edizione\
                     FROM TAPPA\
-                    ORDER BY CodT, Edizione"
+                    ORDER BY Edizione, CodT"
 
             tappe = con.execute(query)
 
@@ -109,7 +109,7 @@ def read_form_query():
                 FROM CICLISTA C, CLASSIFICA_INDIVIDUALE CI, SQUADRA S\
                 WHERE C.CodC = CI.CodC AND C.CodS = S.CodS\
                 AND C.CodC = '%d' AND CI.CodT = '%d'\
-                ORDER BY Edizione" % (ciclista, tappa)
+                ORDER BY Edizione, CodT" % (ciclista, tappa)
 
         res = con.execute(query)
 
@@ -136,7 +136,44 @@ def aggiornamento_classifica():
 
         ciclista = int(request.args.get("cod_ciclista"))
         tappa = [int(s) for s in request.args.get("cod_ed_tappa") if s.isdigit()]
-        #qua devo inserire la query tappa[0] = codT e tappa[1] = edizione
+        posizione = int(request.args.get("pos_ciclista"))
+        # qua devo inserire la query tappa[0] = codT e tappa[1] = edizione
+        query = "INSERT INTO CLASSIFICA_INDIVIDUALE VALUES('%d', '%d', '%d', '%d')" \
+                % (ciclista, tappa[1], tappa[0], posizione)
+
+        con.execute(query)
+        con.close()
+
+        return render_template('OK.html')
+    except SQLAlchemyError as e:
+
+        error = str(e.__dict__['orig'])
+        return render_template('KO.html', error_message=error)
+
+
+@app.route("/inserimento_ciclista")
+def inserimento_ciclista():
+    dialect = "mysql"
+    username = "root"
+    password = ""
+    host = "127.0.0.1:3306"
+    dbname = "campionato_ciclistico"
+    engine = create_engine("%s://%s:%s@%s/%s" % (dialect, username, password, host, dbname))
+
+    try:
+        con = engine.connect()
+
+        ciclista = int(request.args.get("cod_ciclista"))
+        nome = request.args.get("nome_ciclista")
+        cognome = request.args.get("cognome_ciclista")
+        nazionalita = request.args.get("nazionalita_ciclista")
+        squadra = int(request.args.get("squadra_ciclista"))
+        anno_nascita = int(request.args.get("anno_nascita_ciclista"))
+
+        query="INSERT INTO CICLISTA VALUES('%d', '%s', '%s', '%s', '%d', '%d')" \
+              % (ciclista, nome, cognome, nazionalita, squadra, anno_nascita)
+
+        con.execute(query)
         con.close()
 
         return render_template('OK.html')
