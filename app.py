@@ -1,4 +1,3 @@
-from inspect import FullArgSpec
 from flask import Flask, render_template, request
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import create_engine
