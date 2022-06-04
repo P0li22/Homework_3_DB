@@ -21,7 +21,7 @@
         </tr>
         <tr>
             <td>
-                <label for="c_ed_Tappa">Codice Tappa:</label> <br/>
+                <label for="c_ed_Tappa">Tappa:</label> <br/>
                 <select class="form_row" name="cod_ed_tappa" id="c_ed_Tappa">
                     {% for tappa in tappe %}
                     <option value="{{ (tappa['CodT'], tappa['Edizione']) }}"> tappa {{ tappa['CodT'] }} - {{ tappa['Edizione'] }}^ edizione</option>
